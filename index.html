@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Software Engineer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4e54c8;
+            --secondary-color: #8f94fb;
+            --dark-color: #121212;
+            --light-color: #f8f9fa;
+            --accent-color: #00b4d8;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-weight: 700;
+        }
+
+        .code-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 150px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23000000' fill-opacity='0.2' d='M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,122.7C672,128,768,160,864,170.7C960,181,1056,171,1152,165.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skill-item {
+            margin-bottom: 25px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+        }
+
+        /* Projects Section */
+        .project-card {
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-tags {
+            margin-top: 15px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Education Section */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--primary-color);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            margin-bottom: 30px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .social-links {
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            margin: 0 10px;
+            text-align: center;
+            line-height: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Masood Ali</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 hero-content">
+                    <h1 class="hero-title">Hi, I'm <span class="text-warning">Masood Ali</span></h1>
+                    <p class="hero-subtitle">Final Year Software Engineering Student</p>
+                    <p class="lead">I build exceptional and scalable software solutions with modern technologies</p>
+                    <div class="mt-4">
+                        <a href="#projects" class="btn btn-light btn-lg me-3">View My Work</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg">Contact Me</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block text-center">
+                    <div class="code-display bg-dark p-3 rounded">
+                        <pre class="text-start text-light m-0">
+<span class="text-success">// Passionate Software Engineer</span>
+<span class="text-info">while</span>(<span class="text-warning">!succeed</span>) {
+    <span class="text-info">try</span>Again();
+    <span class="text-info">if</span>(deadlineApproaching) {
+        drinkMoreCoffee();
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <p>Hi, I’m Masood, a Final Year Software Engineering student and passionate MERN Stack Developer
+                            with over 2 years of hands-on experience in building modern, scalable, and user-friendly web
+                            applications.</p>
+                        <p>I specialize in React.js, Node.js, Express.js, and MongoDB, creating seamless solutions that
+                            combine interactive front-end designs with powerful back-end systems.</p>
+                        <p>When I'm not coding, you can find me contributing to open-source projects, reading tech
+                            blogs, or exploring new programming paradigms.</p>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#contact" class="btn btn-primary me-2">Hire Me</a>
+                        <a href="Masood_Resume (1).pdf" class="btn btn-outline-primary">Download CV</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body text-center">
+                                    <h3 class="text-primary">10+</h3>
+                                    <p class="mb-0">Projects Completed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body text-center">
+                                    <h3 class="text-primary">1000+</h3>
+                                    <p class="mb-0">Hours Coding</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body text-center">
+                                    <h3 class="text-primary">6+</h3>
+                                    <p class="mb-0">Technologies</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body text-center">
+                                    <h3 class="text-primary">3+</h3>
+                                    <p class="mb-0">Certifications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript/TypeScript</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 90%; background-color: #4e54c8;"
+                                aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>React.js</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 85%; background-color: #4e54c8;"
+                                aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Node.js</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 80%; background-color: #4e54c8;"
+                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 40%; background-color: #4e54c8;"
+                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Java</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #4e54c8;"
+                                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>SQL & Databases</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 85%; background-color: #4e54c8;"
+                                aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h3 class="text-center mb-4">Other Technologies</h3>
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div class="skill-chip bg-light rounded-pill py-2 px-4 m-2">HTML5</div>
+                    <div class="skill-chip bg-light rounded-pill py-2 px-4 m-2">CSS3</div>
+                    <div class="skill-chip bg-light rounded-pill py-2 px-4 m-2">Bootstrap</div>
+                    <div class="skill-chip bg-light rounded-pill py-2 px-4 m-2">Git</div>
+                    <div class="skill-chip bg-light rounded-pill py-2 px-4 m-2">REST APIs</div>
+                    <div class="skill-chip bg-light rounded-pill py-2 px-4 m-2">Docker</div>
+                    <div class="skill-chip bg-light rounded-pill py-2 px-4 m-2">AWS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="project-card">
+                        <img src="https://www.cloudways.com/blog/wp-content/uploads/ecommerce-website-checklist-b-.jpg"
+                            class="project-img card-img-top" alt="Project 1">
+                        <div class="card-body">
+                            <h5 class="card-title">E-Commerce Platform</h5>
+                            <p class="card-text">A full-stack e-commerce application with user authentication, product
+                                catalog, shopping cart, and payment integration.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">Node.js</span>
+                                <span class="project-tag">MongoDB</span>
+                                <span class="project-tag">Stripe</span>
+                            </div>
+                            <div class="mt-3">
+                                <a href="#" class="btn btn-sm btn-primary">View Project</a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="project-card">
+                        <img src="https://a.storyblok.com/f/289344/1200x631/472173adb4/mt_default-sharing-image_1200x630_en.png"
+                            class="project-img card-img-top" alt="Project 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Task Management System</h5>
+                            <p class="card-text">A collaborative task management application with real-time updates,
+                                drag-and-drop functionality, and team collaboration features.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Vue.js</span>
+                                <span class="project-tag">Express</span>
+                                <span class="project-tag">Socket.io</span>
+                                <span class="project-tag">PostgreSQL</span>
+                            </div>
+                            <div class="mt-3">
+                                <a href="#" class="btn btn-sm btn-primary">View Project</a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="project-card">
+                        <img src="https://img.freepik.com/free-vector/medical-booking-app-concept_23-2148562986.jpg"
+                            class="project-img card-img-top" alt="Project 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Health & Fitness Tracker</h5>
+                            <p class="card-text">A mobile application that tracks user health metrics, workout routines,
+                                and provides personalized recommendations.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">React Native</span>
+                                <span class="project-tag">Firebase</span>
+                                <span class="project-tag">Chart.js</span>
+                                <span class="project-tag">Health APIs</span>
+                            </div>
+                            <div class="mt-3">
+                                <a href="#" class="btn btn-sm btn-primary">View Project</a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education & Experience</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Education</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2021 - 2025</div>
+                            <h4>Bachelor of Software Engineering</h4>
+                            <p>Mehran University of Engineering and Technology, Jamshoro, Pakistan</p>
+                            <p>GPA: 2.91/4.0</p>
+                            <p>Relevant Courses: Algorithms, Data Structures, Software Architecture, Database Systems,
+                                Web Development</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2019 - 2021</div>
+                            <h4>Intermediate of Pre-Engineering</h4>
+                            <p>Govt. Boys Degree College Larkana (BISE Larkana), Larkana, Pakistan</p>
+                            <p>Percentage: 94.64%/100% (A1 Grade)</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Experience</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Remote Job 2023 – 2024</div>
+                            <h4>Virtual-Assistant </h4>
+                            <p>Warsaw, Poland</p>
+                            <p>I worked remotely as a virtual assistant for a company based in Poland. During my time
+                                with them,
+                                I gained valuable experience and learned a great deal. This opportunity allowed me to
+                                develop my skills
+                                .</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022 - Present</div>
+                            <h4>Freelance Web Developer</h4>
+                            <p>Self-Employed</p>
+                            <p>Created responsive websites and web applications for various clients. Managed project
+                                timelines and client communications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="contact-info text-center">
+                        <div class="contact-icon mx-auto">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email</h4>
+                        <p>masoodaliburiro999@gmail.com</p>
+                    </div>
+                    <div class="contact-info text-center">
+                        <div class="contact-icon mx-auto">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4>Phone</h4>
+                        <p>+92 3153716313</p>
+                    </div>
+                    <div class="contact-info text-center">
+                        <div class="contact-icon mx-auto">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Location</h4>
+                        <p>Mehran University of Engineering and Technology Jamshoro, Sindh, Pakistan</p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Subject">
+                        <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links text-center">
+                <a href="https://github.com/Masoodburirogithub" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/masood-ali-487116233/" class="social-link"><i
+                        class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="text-center mb-0">© 2023 Masood Ali. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow');
+            } else {
+                navbar.classList.remove('shadow');
+            }
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Here you would normally handle form submission to a server
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.skill-item, .project-card, .timeline-item');
+
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+
+                if (position < screenPosition) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialize elements for animation
+        document.querySelectorAll('.skill-item, .project-card, .timeline-item').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'all 0.5s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        // Initial call in case elements are already in view
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+
+</html>
